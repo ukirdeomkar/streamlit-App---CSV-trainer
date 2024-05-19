@@ -1,0 +1,5 @@
+check on this link :
+https://ai.google.dev/gemini-api/docs/get-started/tutorial?lang=python
+
+
+also create a .env file with varibale GEMINI_API_KEY variable on local for accessing gemini API
