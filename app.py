@@ -56,7 +56,7 @@ def main():
     sentences = generate_sentences(df, header_names)
     if(sentences):
       user_message = st.text_input("Type your message:")
-      context_window_size = 200
+      context_window_size = 20
       context = sentences[:context_window_size]
       st.write("The AI has studied the data and you can ask new question to it now regarding this type of data")
       context_box = st.expander("Current Context :")
