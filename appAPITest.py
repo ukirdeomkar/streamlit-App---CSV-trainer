@@ -24,25 +24,32 @@ st.title("Chat with Gemini")
 
 # Input field for user message
 user_message = st.text_input("Type your message:")
-chat_history = []
+
+if 'chat_history' not in st.session_state:
+    st.session_state['chat_history'] = []
+
+chat_history = st.session_state['chat_history']
+# st.write("chat hist :",chat_history)
 
 # Send message and receive response with context
 if user_message:
   # Update chat history
-  chat_history.append(user_message)
+  chat_history.append("ME : \n"+user_message)
 
   # Get context from the chat history window
   context = " ".join(chat_history[-context_window_size:])
-  st.write(chat_history[::-1])
+  # st.write(chat_history)
   # Send message with context and display response
-#   response = send_message(context, user_message)
-#   st.write(f"Gemini: {response}")
+  response = send_message(context, user_message)
+  st.write(f"Gemini: {response}")
 
   # Update chat history with response
-#   chat_history.append(response)
+  chat_history.append("GEMINI: \n"+response)
 
 # Display chat history (optional)
 if chat_history:
-  st.write("Chat History:")
-  for message in chat_history:
-    st.write(f"- {message}")
+  chat_history_box = st.expander("Chat History:")
+  with chat_history_box:
+    for message in chat_history:
+      st.write(f"- {message}")
+
